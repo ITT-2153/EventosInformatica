@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventosInformatica.Library", "EventosInformatica.Library\EventosInformatica.Library.csproj", "{4D30A3E2-36BF-45A4-A56C-6F653AC3AF12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventosInformatica.Web", "EventosInformatica.Web\EventosInformatica.Web.csproj", "{0125E757-885C-4997-9B4E-D51DB3D29863}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D30A3E2-36BF-45A4-A56C-6F653AC3AF12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D30A3E2-36BF-45A4-A56C-6F653AC3AF12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D30A3E2-36BF-45A4-A56C-6F653AC3AF12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D30A3E2-36BF-45A4-A56C-6F653AC3AF12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0125E757-885C-4997-9B4E-D51DB3D29863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0125E757-885C-4997-9B4E-D51DB3D29863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0125E757-885C-4997-9B4E-D51DB3D29863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0125E757-885C-4997-9B4E-D51DB3D29863}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37946C48-F566-4EBA-A0D6-0525797FB880}
+	EndGlobalSection
+EndGlobal
