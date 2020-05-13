@@ -22,7 +22,7 @@ namespace EventosInformatica.Web.Controllers
         // GET: Events
         public async Task<IActionResult> Index()
         {
-            var dataDbContext = _context.Events.Include(@a => @a.City);
+            var dataDbContext = _context.Events.Include(@c => @c.Category).Include(@d => @d.City);
             return View(await dataDbContext.ToListAsync());
         }
 
@@ -35,7 +35,8 @@ namespace EventosInformatica.Web.Controllers
             }
 
             var @event = await _context.Events
-                .Include(@a => @a.City)
+                .Include(@c => @c.Category)
+                .Include(@d => @d.City)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@event == null)
             {
@@ -48,6 +49,7 @@ namespace EventosInformatica.Web.Controllers
         // GET: Events/Create
         public IActionResult Create()
         {
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description");
             ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name");
             return View();
         }
@@ -57,7 +59,7 @@ namespace EventosInformatica.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,EventDate,Description,Picture,People,Duration,CityId")] Event @event)
+        public async Task<IActionResult> Create([Bind("Id,Name,EventDate,Description,Picture,People,Duration,CityId,CategoryId")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +67,7 @@ namespace EventosInformatica.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description", @event.CategoryId);
             ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", @event.CityId);
             return View(@event);
         }
@@ -82,6 +85,7 @@ namespace EventosInformatica.Web.Controllers
             {
                 return NotFound();
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description", @event.CategoryId);
             ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", @event.CityId);
             return View(@event);
         }
@@ -91,7 +95,7 @@ namespace EventosInformatica.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,EventDate,Description,Picture,People,Duration,CityId")] Event @event)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,EventDate,Description,Picture,People,Duration,CityId,CategoryId")] Event @event)
         {
             if (id != @event.Id)
             {
@@ -118,6 +122,7 @@ namespace EventosInformatica.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description", @event.CategoryId);
             ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", @event.CityId);
             return View(@event);
         }
@@ -131,7 +136,8 @@ namespace EventosInformatica.Web.Controllers
             }
 
             var @event = await _context.Events
-                .Include(@a => @a.City)
+                .Include(@c => @c.Category)
+                .Include(@d => @d.City)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@event == null)
             {

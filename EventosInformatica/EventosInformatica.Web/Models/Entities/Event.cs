@@ -25,10 +25,12 @@ namespace EventosInformatica.Web.Models.Entities
         [Display(Name = "Duracion")]
         public int Duration { get; set; }
         [Required]
+        [Display(Name = "Ciudad")]
         public int CityId { get; set; }
         [ForeignKey("CityId")]
         public City City { get; set; }
         [Required]
+        [Display(Name = "Categoria")]
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }

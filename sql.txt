@@ -1,0 +1,30 @@
+CATEGORIAS
+
+SET IDENTITY_INSERT [dbo].[Categories] ON
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Description]) VALUES (1, N'Nacimientos', N'Nacimientos')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Description]) VALUES (2, N'Cumpleaños', N'Fiesta de Cumpleaños')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Description]) VALUES (3, N'Casamientos', N'Boda')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Description]) VALUES (4, N'Aniversarios', N'Aniversarios')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Description]) VALUES (5, N'Fiesta de reencuentros', N'Reencuentros con amigos')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Description]) VALUES (6, N'Concierto', N'Se presenta una banda a tocar')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Description]) VALUES (7, N'Fiestas de Fin de Año', N'Ultima fiesta del año')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Description]) VALUES (8, N'Fiestas de Despedida', N'Cuando se va un amigo')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Description]) VALUES (9, N'Fiestas Benéficas ', N'Recaudar fondos para una buena causa')
+INSERT INTO [dbo].[Categories] ([Id], [Name], [Description]) VALUES (10, N'Fiestas Temáticas ', N'Halloween, Disfraces, etc')
+SET IDENTITY_INSERT [dbo].[Categories] OFF
+
+
+CIUDADES
+
+SET IDENTITY_INSERT [dbo].[Cities] ON
+INSERT INTO [dbo].[Cities] ([Id], [Name], [Description], [Slung]) VALUES (1, N'Tijuana', N'Aquí empieza la patria ', N'México')
+INSERT INTO [dbo].[Cities] ([Id], [Name], [Description], [Slung]) VALUES (2, N'Ensenada', N'Ensenada es para Ti', N'México')
+INSERT INTO [dbo].[Cities] ([Id], [Name], [Description], [Slung]) VALUES (3, N'Mexicali', N'Crece con su Gente', N'México')
+INSERT INTO [dbo].[Cities] ([Id], [Name], [Description], [Slung]) VALUES (4, N'Tecate', N'Construyendo una Mejor Ciudad', N'México')
+INSERT INTO [dbo].[Cities] ([Id], [Name], [Description], [Slung]) VALUES (5, N'Rosarito', N'Un Gobierno Más Cerca de Ti', N'México')
+INSERT INTO [dbo].[Cities] ([Id], [Name], [Description], [Slung]) VALUES (6, N'Loreto', N'Gobierno para Todos', N'México')
+INSERT INTO [dbo].[Cities] ([Id], [Name], [Description], [Slung]) VALUES (7, N'Los Cabos', N'Gobernar es Servir', N'México')
+INSERT INTO [dbo].[Cities] ([Id], [Name], [Description], [Slung]) VALUES (8, N'Mulegé', N'Para Adelante', N'México')
+INSERT INTO [dbo].[Cities] ([Id], [Name], [Description], [Slung]) VALUES (9, N'Ciudad de México', N'Decidiendo Juntos', N'México')
+INSERT INTO [dbo].[Cities] ([Id], [Name], [Description], [Slung]) VALUES (10, N'Toluca', N'Hacia un Municipio Educador a la Altura de su Gente', N'México')
+SET IDENTITY_INSERT [dbo].[Cities] OFF
