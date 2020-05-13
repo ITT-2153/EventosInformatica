@@ -12,6 +12,9 @@ namespace EventosInformatica.Web.Models
         public DataDbContext(DbContextOptions<DataDbContext> options) : base(options)
         { }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
     }
 }
