@@ -1,4 +1,5 @@
 ﻿using EventosInformatica.Web.Models.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EventosInformatica.Web.Models
 {
-    public class DataDbContext : DbContext  // Hereda de DbContext  
+    public class DataDbContext : IdentityDbContext<User>  // Hereda de DbContext  
     {
         public DataDbContext(DbContextOptions<DataDbContext> options) : base(options)
         { }
@@ -15,6 +16,8 @@ namespace EventosInformatica.Web.Models
         public DbSet<City> Cities { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        //public DbSet<User> Users { get; set; }
 
     }
 }
