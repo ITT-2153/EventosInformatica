@@ -4,14 +4,16 @@ using EventosInformatica.Web.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventosInformatica.Web.Migrations
 {
     [DbContext(typeof(DataDbContext))]
-    partial class DataDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200520222145_Users")]
+    partial class Users
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
