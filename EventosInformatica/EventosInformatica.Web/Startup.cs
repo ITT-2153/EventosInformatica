@@ -47,6 +47,7 @@ namespace EventosInformatica.Web
             // Autenticacion
             services.AddScoped<IUserHelper, UserHelper>();
 
+            // Politicas de autenticacion
             services.AddIdentity<User, IdentityRole>(
                 cfg => {
                     cfg.User.RequireUniqueEmail = true;
@@ -76,6 +77,8 @@ namespace EventosInformatica.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            // Se agrego autenticacion
+            app.UseAuthentication();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
