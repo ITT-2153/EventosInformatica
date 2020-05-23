@@ -40,8 +40,12 @@
 
                         <li><a asp-area="" asp-controller="Clients" asp-action="Index">Clientes</a></li>
                     }
-                    <li><a asp-area="" asp-controller="Cities" asp-action="Index">Ciudades</a></li>
-                    <li><a asp-area="" asp-controller="Events" asp-action="Index">Eventos</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="Cities" asp-action="Index">Ciudades</a></li>
+                        <li><a asp-area="" asp-controller="Events" asp-action="Index">Eventos</a></li>
+                        <li><a asp-area="" asp-controller="Categories" asp-action="Index">Categorias</a></li>
+                    }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.Identity.IsAuthenticated)

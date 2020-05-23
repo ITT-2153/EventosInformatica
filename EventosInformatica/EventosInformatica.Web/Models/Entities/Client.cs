@@ -10,8 +10,6 @@ namespace EventosInformatica.Web.Models.Entities
     {
         private User user;
 
-        
-
         public int Id { get; set; }
         
         [MaxLength(500)]
@@ -19,5 +17,6 @@ namespace EventosInformatica.Web.Models.Entities
         public string Address { get; set; }
 
         public User User { get; set; }
-    }
+        public ICollection<Event> Events { get; set; }
+}
 }

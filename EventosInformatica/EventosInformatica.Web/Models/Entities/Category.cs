@@ -15,5 +15,6 @@ namespace EventosInformatica.Web.Models.Entities
         [Required]
         [Display(Name = "Descripcion")]
         public string Description { get; set; }
-    }
+        public ICollection<Event> Events { get; set; }
+}
 }

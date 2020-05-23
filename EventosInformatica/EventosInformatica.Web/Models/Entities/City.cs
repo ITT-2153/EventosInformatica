@@ -17,5 +17,7 @@ namespace EventosInformatica.Web.Models.Entities
         [Display(Name = "Pais")]
         public string Slung { get; set; }
 
-    }
+        public ICollection<Event> Events { get; set; }
+
+}
 }

@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventosInformatica.Web.Models;
 using EventosInformatica.Web.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EventosInformatica.Web.Controllers
 {
+
+    [Authorize]
     public class EventsController : Controller
     {
         private readonly DataDbContext _context;

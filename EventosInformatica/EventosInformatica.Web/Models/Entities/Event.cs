@@ -34,5 +34,8 @@ namespace EventosInformatica.Web.Models.Entities
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
+        public int ClientId { get; set; }
+        [ForeignKey("ClientId")]
+        public Client Client { get; set; }
     }
 }
