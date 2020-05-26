@@ -24,7 +24,7 @@ namespace EventosInformatica.Web.Controllers
         // GET: Cities
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cities.ToListAsync());
+            return View(await _context.Cities.Include(a=>a.Events).ToListAsync());
         }
 
         // GET: Cities/Details/5
@@ -35,7 +35,7 @@ namespace EventosInformatica.Web.Controllers
                 return NotFound();
             }
 
-            var city = await _context.Cities
+            var city = await _context.Cities.Include(a=>a.Events)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (city == null)
             {
