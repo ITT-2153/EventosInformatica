@@ -52,6 +52,11 @@ namespace EventosInformatica.Web.Controllers
         // GET: Events/Create
         public IActionResult Create()
         {
+            // Agregamos esto T8
+            var username = User.Identity.Name;
+            var userid = _context.Clients.Where(a => a.User.Email == username).FirstOrDefault();
+            ViewBag.ClientId = userid.Id;
+            //
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description");
             ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name");
             return View();
@@ -62,7 +67,7 @@ namespace EventosInformatica.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,EventDate,Description,Picture,People,Duration,CityId,CategoryId")] Event @event)
+        public async Task<IActionResult> Create(Event @event)
         {
             if (ModelState.IsValid)
             {
