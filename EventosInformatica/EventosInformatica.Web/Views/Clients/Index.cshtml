@@ -5,7 +5,7 @@
 }
 
 
-<div class="container col-md-12">
+<div style="padding-top: 40px;" class="container col-md-12">
     <div class="col col-md-2"></div>
     <div class="co col-md-8">
         <p>
@@ -14,9 +14,11 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>@Html.DisplayNameFor(model => model.User.Email)</th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Address)
+                        Phone
                     </th>
+                    <th> Eventos</th>
                     <th></th>
                 </tr>
             </thead>
@@ -24,13 +26,15 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td>@Html.DisplayFor(modelItem => item.User.Email)</td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Address)
+                            @Html.DisplayFor(modelItem => item.User.PhoneNumber)
                         </td>
+                        <td>@Html.DisplayFor(modelItem => item.Events.Count)</td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalle</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
                         </td>
                     </tr>
                 }

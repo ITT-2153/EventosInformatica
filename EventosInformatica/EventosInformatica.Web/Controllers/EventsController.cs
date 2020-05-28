@@ -62,6 +62,14 @@ namespace EventosInformatica.Web.Controllers
             return View();
         }
 
+        public IActionResult CreateEvent()
+        {
+            ViewBag.ClientId = _context.Clients.Include(u => u.User).ToList();
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name");
+            ViewData["CategoryId"] = new SelectList(_context.Categories,"Id", "Name");
+            return View();
+        }
+
         // POST: Events/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -78,6 +86,22 @@ namespace EventosInformatica.Web.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description", @event.CategoryId);
             ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", @event.CityId);
             return View(@event);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateEvent(Event @event)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(@event);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewBag.ClientId = _context.Clients.Include(u => u.User).ToList();
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", @event.CityId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", @event.CategoryId);
+            return View();
         }
 
         // GET: Events/Edit/5
@@ -103,7 +127,7 @@ namespace EventosInformatica.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,EventDate,Description,Picture,People,Duration,CityId,CategoryId")] Event @event)
+        public async Task<IActionResult> Edit(int id, Event @event)
         {
             if (id != @event.Id)
             {

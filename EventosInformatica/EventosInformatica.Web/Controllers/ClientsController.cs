@@ -25,7 +25,11 @@ namespace EventosInformatica.Web.Controllers
         // GET: Clients
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Clients.ToListAsync());
+            var clients = await _context.Clients
+                .Include(a => a.Events)
+                .Include(a => a.User)
+               .ToListAsync();
+            return View(clients);
         }
 
         // GET: Clients/Details/5
