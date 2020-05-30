@@ -13,40 +13,44 @@ namespace EventosInformatica.Web.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class ClientsController : ControllerBase
     {
         private readonly DataDbContext _context;
 
-        public CategoriesController(DataDbContext context)
+        public ClientsController(DataDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Categories
+        // GET: api/Clients
         [HttpGet]
-        public IEnumerable<Category> GetCategories()
+        public IEnumerable<Client> GetClients()
         {
-            return _context.Categories;
+            return _context.Clients;
         }
 
-        // GET: api/Categories/5
+        // GET: api/Clients/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCategory([FromRoute] int id)
+        public async Task<IActionResult> GetClient([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var category = await _context.Categories.Include(a => a.Events)
-                .FirstOrDefaultAsync(a => a.Id == id);
+            var client = await _context.Clients.Include(a => a.Events).Include(u => u.User)
+                        .FirstOrDefaultAsync(a => a.Id == id);
 
-            var response = new CategoryResponse
+            var response = new ClientResponse
             {
-                Description = category.Description,
-                Name = category.Name,
-                Id = category.Id,
-                Events = category.Events.Select(p => new EventResponse
+                Id = client.Id,
+                UserName = client.User.UserName,
+                Email = client.User.Email,
+                Address = client.Address,
+                Description = client.User.Description,
+                FullName = client.User.FullName,
+                PhoneNumber = client.User.PhoneNumber,
+                Events = client.Events.Select(p => new EventResponse
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -57,45 +61,39 @@ namespace EventosInformatica.Web.Controllers.API
                 }).ToList(),
             };
 
-            if (category == null)
+            if (client == null)
             {
                 return NotFound();
             }
 
             return Ok(response);
             /*
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var client = await _context.Clients.FindAsync(id);
 
-            var category = await _context.Categories.FindAsync(id);
-
-            if (category == null)
+            if (client == null)
             {
                 return NotFound();
             }
 
-            return Ok(category);
+            return Ok(client);
             */
         }
 
-        // PUT: api/Categories/5
+        // PUT: api/Clients/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategory([FromRoute] int id, [FromBody] Category category)
+        public async Task<IActionResult> PutClient([FromRoute] int id, [FromBody] Client client)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != category.Id)
+            if (id != client.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
+            _context.Entry(client).State = EntityState.Modified;
 
             try
             {
@@ -103,7 +101,7 @@ namespace EventosInformatica.Web.Controllers.API
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CategoryExists(id))
+                if (!ClientExists(id))
                 {
                     return NotFound();
                 }
@@ -116,45 +114,45 @@ namespace EventosInformatica.Web.Controllers.API
             return NoContent();
         }
 
-        // POST: api/Categories
+        // POST: api/Clients
         [HttpPost]
-        public async Task<IActionResult> PostCategory([FromBody] Category category)
+        public async Task<IActionResult> PostClient([FromBody] Client client)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Categories.Add(category);
+            _context.Clients.Add(client);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+            return CreatedAtAction("GetClient", new { id = client.Id }, client);
         }
 
-        // DELETE: api/Categories/5
+        // DELETE: api/Clients/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory([FromRoute] int id)
+        public async Task<IActionResult> DeleteClient([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
+            var client = await _context.Clients.FindAsync(id);
+            if (client == null)
             {
                 return NotFound();
             }
 
-            _context.Categories.Remove(category);
+            _context.Clients.Remove(client);
             await _context.SaveChangesAsync();
 
-            return Ok(category);
+            return Ok(client);
         }
 
-        private bool CategoryExists(int id)
+        private bool ClientExists(int id)
         {
-            return _context.Categories.Any(e => e.Id == id);
+            return _context.Clients.Any(e => e.Id == id);
         }
     }
 }
