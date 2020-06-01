@@ -8,11 +8,16 @@ using Microsoft.EntityFrameworkCore;
 using EventosInformatica.Web.Models;
 using EventosInformatica.Web.Models.Entities;
 using EventosInformatica.Web.Models.ModelApi;
+using System.Net;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EventosInformatica.Web.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
     public class CategoriesController : ControllerBase
     {
         private readonly DataDbContext _context;

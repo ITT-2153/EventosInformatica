@@ -8,11 +8,15 @@ using Microsoft.EntityFrameworkCore;
 using EventosInformatica.Web.Models;
 using EventosInformatica.Web.Models.Entities;
 using EventosInformatica.Web.Models.ModelApi;
+using System.Net;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace EventosInformatica.Web.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CitiesController : ControllerBase
     {
         private readonly DataDbContext _context;

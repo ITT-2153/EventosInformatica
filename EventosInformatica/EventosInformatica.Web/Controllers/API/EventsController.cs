@@ -42,6 +42,7 @@ namespace EventosInformatica.Web.Controllers.API
                 .Include(cat => cat.Category)
                 .Include(cit => cit.City)
                 .Include(cli => cli.Client)
+                .Include(u => u.Client.User)
                 .FirstOrDefaultAsync(a => a.Id == id);
 
             var response = new EventResponse
@@ -55,7 +56,7 @@ namespace EventosInformatica.Web.Controllers.API
                 Duration = @event.Duration,
                 City = @event.City.Name,
                 Category = @event.Category.Name,
-                Client = @event.Client.Id.ToString()
+                Client = @event.Client.User.Email
             };
 
             if (@event == null)

@@ -18,5 +18,8 @@ namespace EventosInformatica.Web.Data.Helpers
 
         Task<SignInResult> LoginAsync(LoginViewModel loginViewModel);
         Task LogoutAsync();
+
+        // Unidad 4
+        Task<SignInResult> ValidatePasswordAsync(User user, string password);
     }
 }
