@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EventosInformatica.Library.Model
 {
-    class TokenResponse
+    public class TokenResponse
     {
         public string Token { get; set; }
         public DateTime Expiration { get; set; }

@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using EventosInformatica.Library.Service;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -10,6 +11,7 @@ namespace EventosInformatica.Prism.ViewModels
     public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible
     {
         protected INavigationService NavigationService { get; private set; }
+        protected IApiServices ApiServices { get; private set; }
 
         private string _title;
         public string Title

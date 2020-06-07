@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using EventosInformatica.Library.Model;
+using EventosInformatica.Library.Service;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -13,10 +15,12 @@ namespace EventosInformatica.Prism.ViewModels
         private bool isrunning;
         private bool isenabled;
         private DelegateCommand logincommand;
-        public LoginPageViewModel(INavigationService navigationService) : base(navigationService)
+        private readonly IApiServices apiservice;
+        public LoginPageViewModel(INavigationService navigationService, IApiServices apiServices) : base(navigationService)
         {
             Title = "Login";
             IsEnabled = true;
+            apiservice = apiServices;
         }
         public string Email { get; set; }
         public string Password
@@ -48,6 +52,28 @@ namespace EventosInformatica.Prism.ViewModels
             if (string.IsNullOrEmpty(Password))
             {
                 await App.Current.MainPage.DisplayAlert("Error", "Ingrese un Password", "Accept");
+                return;
+            }
+
+            IsRunning = true;
+            IsEnabled = false;
+
+            var request = new TokenRequest()
+            {
+                Password = Password,
+                Username = Email,
+            };
+
+            var url = App.Current.Resources["UrlAPI"].ToString();
+
+            var response = await apiservice.GetTokenAsync(url, "/Account", "/CreateToken", request);
+
+            if (!response.IsSuccess)
+            {
+                IsRunning = false;
+                IsEnabled = true;
+                await App.Current.MainPage.DisplayAlert("Error", "User or password incorrect", "Accept");
+                Password = string.Empty;
                 return;
             }
 

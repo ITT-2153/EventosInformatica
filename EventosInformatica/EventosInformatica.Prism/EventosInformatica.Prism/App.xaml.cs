@@ -6,6 +6,7 @@ using Xamarin.Essentials.Interfaces;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using EventosInformatica.Library.Service;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace EventosInformatica.Prism
@@ -34,6 +35,8 @@ namespace EventosInformatica.Prism
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            // Prism parte 2
+            containerRegistry.Register<IApiServices, ApiServices>();
         }
     }
 }
